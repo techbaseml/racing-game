@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e9f5eb">
+  <meta name="description" content="Little cars. Big adventures. A colorful, free 3D racing game for keyboard and touchscreens.">
+  <title>Turbo Trails — Little cars. Big adventures.</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <canvas id="world" aria-label="3D racing world"></canvas>
+  <div id="loading" class="loading"><span class="loading-car">🏎️</span><strong>Warming up the wheels…</strong><span>A little adventure is almost ready.</span></div>
+  <div id="fatal" class="fatal hidden" role="alert"><h1>Let’s get back on track</h1><p id="fatal-message"></p><button onclick="location.reload()">Try again</button></div>
+
+  <div id="menu" class="menu">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Turbo Trails home"><span class="brand-mark">t<span>t</span><i></i></span><span>TURBO<span class="brand-light">TRAILS</span><small>SMALL WHEELS. BIG WORLD.</small></span></a>
+      <div class="header-actions"><span class="made-for-fun"><i></i> MADE FOR FUN</span><button class="icon-button sound-toggle" aria-label="Mute sound" title="Mute sound">♫</button><button class="icon-button" data-dialog="settings" aria-label="Settings" title="Settings">⚙</button></div>
+    </header>
+    <main class="menu-main">
+      <section class="hero">
+        <div class="eyebrow"><span>✦</span> YOUR NEXT ADVENTURE STARTS HERE</div>
+        <h1>Little cars.<br>Big <span>adventures.<svg viewBox="0 0 420 20" aria-hidden="true"><path d="M6 12 Q190 -2 411 10"/></svg></span></h1>
+        <p class="hero-copy">Buckle up for a world of colorful turns,<br class="desktop-break"> friendly races, and full-speed smiles.</p>
+        <div class="mode-selector" role="group" aria-label="Game mode">
+          <button class="mode-card active" data-mode="race" aria-pressed="true"><span class="mode-icon">⚑</span><strong>Race day</strong><small>Chase the trophy</small><i>✓</i></button>
+          <button class="mode-card" data-mode="free" aria-pressed="false"><span class="mode-icon">♧</span><strong>Free drive</strong><small>Your own adventure</small><i>✓</i></button>
+          <button class="mode-card" data-mode="trial" aria-pressed="false"><span class="mode-icon">◴</span><strong>Time trial</strong><small>Beat your best</small><i>✓</i></button>
+        </div>
+        <button id="play" class="play-button"><span>LET’S RACE</span><span class="play-arrow">➜</span></button>
+        <div class="hero-links"><button data-dialog="garage"><span>▰</span> Select your car <span class="link-arrow">➜</span></button><span class="link-divider"></span><button data-dialog="help"><span>ⓘ</span> How to play</button></div>
+        <div class="keyboard-hint"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span><span>or arrow keys to drive <b>·</b> Touch-ready, too</span></div>
+      </section>
+      <aside class="world-caption"><div class="track-label"><span class="track-symbol">✿</span><span><small>EXPLORE YOUR FIRST WORLD</small><strong>Sunny Valley <span class="link-arrow">➜</span></strong><em>Easy turns. Endless good times.</em></span><span class="track-difficulty"><i></i> EASY</span></div><div class="world-dots"><i class="active"></i><i></i><i></i><span>ONE HAPPY LITTLE WORLD</span></div></aside>
+      <div class="scene-note"><span>☀</span> Forecast: 100% fun</div>
+    </main>
+    <footer class="site-footer"><div><span>✧</span> A little friendly competition. A whole lot of fun.</div><div class="footer-pills"><span>✓ Kid-friendly</span><span>♡ No ads. Just play.</span><span>⌘ Play anywhere</span></div></footer>
+  </div>
+
+  <section id="hud" class="hud hidden" aria-label="Race information">
+    <div class="hud-top"><div class="hud-left"><div id="position-panel" class="hud-panel position"><strong id="position">1<span>/4</span></strong><small>POSITION</small></div><div class="hud-panel lap-panel"><small id="lap-label">LAP</small><strong id="lap">1 <span>/ 3</span></strong></div><div id="timer-panel" class="hud-panel timer-panel"><small id="timer-label">RACE TIME</small><strong id="timer">00:00.00</strong><span id="best-time"></span></div></div><div class="hud-right"><button class="icon-button sound-toggle" aria-label="Mute sound">♫</button><button id="pause" class="icon-button" aria-label="Pause game">Ⅱ</button></div></div>
+    <div id="race-message" class="race-message" role="status"></div>
+    <div class="hud-bottom"><div class="mini-track"><canvas id="minimap" width="180" height="140" aria-label="Track map"></canvas><span>SUNNY VALLEY</span></div><div class="drive-hint"><span class="key">P</span> pause <span class="key">SPACE</span> handbrake <button id="reset-car" title="Return to the track">↺ Back on track</button></div><div class="speed-panel"><strong id="speed">0</strong><span>KM/H</span><div class="speed-meter"><i id="speed-fill"></i></div></div></div>
+    <div id="touch-controls" class="touch-controls"><div class="touch-steer"><button data-input="left" aria-label="Steer left">←</button><button data-input="right" aria-label="Steer right">→</button></div><div class="touch-pedals"><button data-input="brake" aria-label="Brake or reverse">↓</button><button data-input="accelerate" aria-label="Accelerate">↑</button></div></div>
+  </section>
+  <div id="countdown" class="countdown hidden" aria-live="assertive"></div>
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <section id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button id="close-dialog" class="close-dialog" aria-label="Close dialog">×</button><div id="dialog-content"></div>
+    </section>
+  </div>
+  <canvas id="confetti" class="confetti hidden" aria-hidden="true"></canvas>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

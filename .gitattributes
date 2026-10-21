@@ -1,0 +1,2 @@
+# The standalone build embeds upstream shader strings with intentional spacing.
+Turbo-Trails.html linguist-generated=true -whitespace
